@@ -1,7 +1,7 @@
 pipeline {
     parameters {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
-        choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'What action should Terraform take?')
+        choice(name: 'ACTION', choices: ['apply', 'destroy'], defaultValue: destroy, description: 'What action should Terraform take?')
     }
     environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
