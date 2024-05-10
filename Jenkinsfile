@@ -1,7 +1,8 @@
 pipeline {
     parameters {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
-    } 
+        choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'What action should Terraform take?')
+    }
     environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
@@ -9,7 +10,7 @@ pipeline {
 
    agent any
     stages {
-        stage('checkout') {
+        stage('Checkout Code') {
             steps {
                  script{
                         dir("terraform")
@@ -20,7 +21,7 @@ pipeline {
                 }
             }
 
-        stage('Plan') {
+        stage('Terraform Plan') {
             steps {
                 sh 'pwd;cd terraform/ ; terraform init'
                 sh "pwd;cd terraform/ ; terraform plan -out tfplan"
@@ -41,9 +42,9 @@ pipeline {
                }
            }
        }
-        stage('Apply') {
+        stage('Terraform Apply') {
             steps {
-                sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
+                sh "pwd;cd terraform/ ; terraform ${params.ACTION} -input=false tfplan"
             }
         }
     }
