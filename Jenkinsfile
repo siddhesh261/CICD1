@@ -42,9 +42,9 @@ pipeline {
                }
            }
        }
-        stage('Terraform Apply') {
+        stage('Terraform Execution') {
             steps {
-                sh "pwd;cd terraform/ ; terraform ${params.ACTION} -input=false tfplan"
+                sh "pwd;cd terraform/ ; terraform ${params.ACTION} -input=false"
             }
         }
     }
