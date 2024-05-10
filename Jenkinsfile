@@ -44,12 +44,14 @@ pipeline {
        }
         stage('Terraform Execution') {
             steps {
+                script{
                 if (params.ACTION == 'apply') {
                   sh "pwd;cd terraform/ ; terraform ${params.ACTION} -input=false tfplan"
                 } else {
                   sh "pwd;cd terraform/ ; terraform ${params.ACTION} --auto-approve"
                 }
             }
+          }
         }
     }
   }
