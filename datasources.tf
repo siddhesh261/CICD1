@@ -11,6 +11,6 @@ data "aws_ami" "amz_lnx2_ami" {
 # Data source for fetching Default VPC (existing) arguments
 data "aws_vpc" "vpc_id" {
   tags = {
-    "Name" = "Default VPC - DO NOT DELETE"
+    "Name" = "DefaultVPC"
   }
 }

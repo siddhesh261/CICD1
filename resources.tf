@@ -9,6 +9,7 @@ resource "aws_instance" "linux_server" {
   tags = {
     Name = var.servername_var
     OS   = "Linux"
+    
   }
 }
 

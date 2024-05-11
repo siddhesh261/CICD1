@@ -8,8 +8,19 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     }
 
+
    agent any
     stages {
+
+stage('Example') {
+            steps {
+                sh 'echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"'
+                sh 'echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"'
+                // Your AWS-related steps here
+            }
+        }
+
+
         stage('Checkout Code') {
             steps {
                  script{

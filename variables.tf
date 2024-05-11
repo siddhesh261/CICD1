@@ -5,12 +5,12 @@ variable "ansibleserver_ami_var" {
 
 variable "ansibleserver_instance_type" {
   type    = string
-  default = "dummyinstancetype"
+  default = "t2.micro"
 }
 
 variable "ansibleserver_kp" {
   type    = string
-  default = "dummykeypair"
+  default = "terra1"
 }
 
 variable "servername_var" {
