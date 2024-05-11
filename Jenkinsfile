@@ -19,7 +19,6 @@ stage('Example') {
             }
         }
 
-
         stage('Checkout Code') {
             steps {
                  script{
