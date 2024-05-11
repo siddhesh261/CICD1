@@ -9,7 +9,7 @@ resource "aws_instance" "linux_server" {
   tags = {
     Name = var.servername_var
     OS   = "Linux"
-    
+
   }
 }
 
@@ -17,6 +17,7 @@ resource "aws_security_group" "ansibleserver_sg" {
   name   = var.ansibleserver_sg_name
   vpc_id = data.aws_vpc.vpc_id.id
 }
+
 
 resource "aws_security_group_rule" "ansible_sg_ingress_rule" {
   description       = "Allow ansible traffic for public"
